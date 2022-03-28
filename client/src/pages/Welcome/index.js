@@ -2,16 +2,18 @@ import React from "react";
 import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
 import Logo from "../../assets/logos/logo_256.png";
 
+import * as Animatable from 'react-native-animatable';
+
 export default function Welcome() {
 	return (
 		<View style={styles.container}>
 			<View style={styles.containerLogo}>
-				<Image source={Logo} style={styles.logo} resizeMode="contain" />
+				<Animatable.Image animation="flipInY" source={Logo} style={styles.logo} resizeMode="contain" />
 				<Text style={styles.title}>Messenger</Text>
 				<Text style={styles.title}>Bottles</Text>
 			</View>
 
-			<View style={styles.containerForm}>
+			<Animatable.View delay={600} animation="fadeInUp"  style={styles.containerForm}>
 				<View style={styles.containerButtons}>
 					<TouchableOpacity style={styles.button}>
 						<Text style={styles.buttonText}>Entrar</Text>
@@ -21,7 +23,7 @@ export default function Welcome() {
 						<Text style={styles.buttonText}>Registrar</Text>
 					</TouchableOpacity>
 				</View>
-			</View>
+			</Animatable.View>
 		</View>
 	);
 }
