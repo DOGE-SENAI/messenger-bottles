@@ -1,19 +1,18 @@
 import { StatusBar } from "expo-status-bar";
-import { useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
-import { Provider } from "react-native-paper";
-import Header from "./src/components/Header";
-import SignUp from "./src/pages/SignUp";
-import Welcome from'./src/pages/Welcome';
+import Header from "../Header";
 
-export default function App() {
+export default function Contact() {
   return (
-    <Provider>
-      <Header type="chat" />
+    <View>
+      <Header title="Chat" selfProfile={true} otherProfile={true} arrow={true}>
+        asas
+      </Header>
+
       <View style={styles.container}>
-        <Welcome />
+        <Text>Open up App.js to start working on your app!</Text>
       </View>
-    </Provider>
+    </View>
   );
 }
 
