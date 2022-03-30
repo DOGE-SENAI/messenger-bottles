@@ -6,7 +6,7 @@ import React from "react";
 import { TouchableOpacity } from "react-native";
 import { Image } from "react-native";
 
-export default function SingUp() {
+export default function SignUp() {
 	return (
 		<ScrollView style={styles.scrollContainer}>
 			<View style={styles.containerMain}>
