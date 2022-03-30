@@ -25,6 +25,8 @@ export default function SignIn() {
 						<TextInput
 							style={styles.inputEmail}
 							keyboardType="email-address"
+							caretHidden={false}
+							selectionColor={"rgba(0,0,0,0.5)"}
 						></TextInput>
 					</SafeAreaView>
 
@@ -34,6 +36,8 @@ export default function SignIn() {
 						<TextInput
 							style={styles.inputSenha}
 							keyboardType="default"
+							caretHidden={false}
+							selectionColor={"rgba(0,0,0,0.5)"}
 						></TextInput>
 					</SafeAreaView>
 				</View>
