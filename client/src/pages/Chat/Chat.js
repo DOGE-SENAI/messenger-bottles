@@ -2,7 +2,7 @@ import axios from "axios";
 import { io } from "socket.io-client";
 import React, { useEffect, useState, useRef } from "react";
 
-export default function () {
+export default function Chat() {
     const navigate = useNavigate();
     const socket = useRef();
     const [contacts, setContacts] = useState([]);
@@ -44,8 +44,6 @@ export default function () {
     };
     
     return(
-        <>
-        
-        </>
+        <></>
     );
 }

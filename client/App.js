@@ -1,18 +1,16 @@
-import { StatusBar } from "expo-status-bar";
-import { useState } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet } from "react-native";
 import { Provider } from "react-native-paper";
-import Header from "./src/components/Header";
+import Routes from "./routes";
+import ConfigUser from "./src/pages/ConfigUser";
+import Config from "./src/pages/ConfigUser";
+import SignIn from "./src/pages/SignIn";
 import SignUp from "./src/pages/SignUp";
-import Welcome from'./src/pages/Welcome';
+import Welcome from "./src/pages/Welcome";
 
 export default function App() {
   return (
     <Provider>
-      <Header type="chat" />
-      <View style={styles.container}>
-        <Welcome />
-      </View>
+      <ConfigUser />
     </Provider>
   );
 }

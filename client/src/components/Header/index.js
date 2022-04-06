@@ -57,6 +57,13 @@ const Header = ({ type }) => {
         <StatusBar style="auto" />
       </Provider>
     );
+  } else if (type === "withArrow") {
+    return (
+      <View style={styles.header}>
+        <Text style={styles.title(type)}>Chat</Text>
+        <StatusBar style="auto" />
+      </View>
+    );
   }
 };
 
