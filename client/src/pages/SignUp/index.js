@@ -1,10 +1,16 @@
-import { StyleSheet, View, Text, ScrollView } from "react-native";
-import { SafeAreaView, TextInput } from "react-native";
-import DefaultAvatar from "../../assets/images/DefaultAvatar.png";
 import Logo from "../../assets/logos/logo_128.png";
 import React from "react";
-import { TouchableOpacity } from "react-native";
-import { Image } from "react-native";
+import ProfilesPhotos from "../../components/ProfilesPhotos";
+import {
+	StyleSheet,
+	View,
+	Text,
+	ScrollView,
+	SafeAreaView,
+	TextInput,
+	TouchableOpacity,
+	Image,
+} from "react-native";
 
 export default function SignUp() {
 	return (
@@ -15,9 +21,7 @@ export default function SignUp() {
 				</View>
 
 				<View style={styles.containerImg}>
-					<TouchableOpacity style={styles.img}>
-						<Image source={DefaultAvatar} />
-					</TouchableOpacity>
+					<ProfilesPhotos />
 
 					<SafeAreaView>
 						<TextInput
@@ -111,11 +115,6 @@ const styles = StyleSheet.create({
 		fontSize: 23,
 		fontWeight: "700",
 		color: "#E6E8E1",
-	},
-	img: {
-		width: 100,
-		height: 100,
-		borderRadius: 50,
 	},
 	input: {
 		borderWidth: 1,
