@@ -11,7 +11,7 @@ import Welcome from "./src/pages/Welcome";
 export default function App() {
 	return (
 		<Provider>
-			<Header type={"chat"} />
+			<SignUp type={"chat"} />
 		</Provider>
 	);
 }
