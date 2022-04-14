@@ -10,6 +10,7 @@ import {
 	TextInput,
 	TouchableOpacity,
 	Image,
+	StatusBar,
 } from "react-native";
 
 export default function SignUp() {

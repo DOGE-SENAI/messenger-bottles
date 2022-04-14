@@ -1,4 +1,3 @@
-import { StatusBar } from "expo-status-bar";
 import { StyleSheet } from "react-native";
 import { Provider } from "react-native-paper";
 import Routes from "./routes";
@@ -11,7 +10,7 @@ import Welcome from "./src/pages/Welcome";
 export default function App() {
 	return (
 		<Provider>
-			<SignUp type={"chat"} />
+			<Routes />
 		</Provider>
 	);
 }
