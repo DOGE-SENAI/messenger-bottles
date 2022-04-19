@@ -14,7 +14,7 @@ import WomanS2 from "../../assets/profiles/womanSurprise2.png";
 
 export default function ProfilesPhotos() {
 	const [visible, setVisible] = useState(false);
-	const [profilePhoto, setProfilePhoto] = useState(DefaultAvatar)
+	const [profilePhoto, setProfilePhoto] = useState(DefaultAvatar);
 
 	const showDialog = () => setVisible(true);
 
@@ -26,7 +26,7 @@ export default function ProfilesPhotos() {
 				<Image source={profilePhoto} style={styles.img} />
 			</TouchableOpacity>
 
-			<Portal >
+			<Portal>
 				<Dialog
 					visible={visible}
 					onDismiss={hideDialog}
@@ -34,76 +34,85 @@ export default function ProfilesPhotos() {
 				>
 					<Dialog.Title>Selecione a imagem </Dialog.Title>
 					<View style={styles.containerAvatars}>
-						<TouchableOpacity onPress={() => { setProfilePhoto(Man1); hideDialog() }}>
-							<Avatar.Image
-								style={styles.avatar}
-								size={100}
-								source={Man1}
-							/>
+						<TouchableOpacity
+							onPress={() => {
+								setProfilePhoto(Man1);
+								hideDialog();
+							}}
+						>
+							<Avatar.Image style={styles.avatar} size={100} source={Man1} />
 						</TouchableOpacity>
 
-						<TouchableOpacity onPress={() => { setProfilePhoto(Man2); hideDialog() }}>
-							<Avatar.Image
-								style={styles.avatar}
-								size={100}
-								source={Man2}
-							/>
+						<TouchableOpacity
+							onPress={() => {
+								setProfilePhoto(Man2);
+								hideDialog();
+							}}
+						>
+							<Avatar.Image style={styles.avatar} size={100} source={Man2} />
 						</TouchableOpacity>
 
-						<TouchableOpacity onPress={() => { setProfilePhoto(Man3); hideDialog() }}>
-							<Avatar.Image
-								style={styles.avatar}
-								size={100}
-								source={Man3}
-							/>
+						<TouchableOpacity
+							onPress={() => {
+								setProfilePhoto(Man3);
+								hideDialog();
+							}}
+						>
+							<Avatar.Image style={styles.avatar} size={100} source={Man3} />
 						</TouchableOpacity>
 
-						<TouchableOpacity onPress={() => { setProfilePhoto(ManS1); hideDialog() }}>
-							<Avatar.Image
-								style={styles.avatar}
-								size={100}
-								source={ManS1}
-							/>
+						<TouchableOpacity
+							onPress={() => {
+								setProfilePhoto(ManS1);
+								hideDialog();
+							}}
+						>
+							<Avatar.Image style={styles.avatar} size={100} source={ManS1} />
 						</TouchableOpacity>
 
-						<TouchableOpacity onPress={() => { setProfilePhoto(ManS2); hideDialog() }}>
-							<Avatar.Image
-								style={styles.avatar}
-								size={100}
-								source={ManS2}
-							/>
+						<TouchableOpacity
+							onPress={() => {
+								setProfilePhoto(ManS2);
+								hideDialog();
+							}}
+						>
+							<Avatar.Image style={styles.avatar} size={100} source={ManS2} />
 						</TouchableOpacity>
 
-						<TouchableOpacity onPress={() => { setProfilePhoto(Woman1); hideDialog() }}>
-							<Avatar.Image
-								style={styles.avatar}
-								size={100}
-								source={Woman1}
-							/>
+						<TouchableOpacity
+							onPress={() => {
+								setProfilePhoto(Woman1);
+								hideDialog();
+							}}
+						>
+							<Avatar.Image style={styles.avatar} size={100} source={Woman1} />
 						</TouchableOpacity>
 
-						<TouchableOpacity onPress={() => { setProfilePhoto(Woman2); hideDialog() }}>
-							<Avatar.Image
-								style={styles.avatar}
-								size={100}
-								source={Woman2}
-							/>
+						<TouchableOpacity
+							onPress={() => {
+								setProfilePhoto(Woman2);
+								hideDialog();
+							}}
+						>
+							<Avatar.Image style={styles.avatar} size={100} source={Woman2} />
 						</TouchableOpacity>
 
-						<TouchableOpacity onPress={() => { setProfilePhoto(Woman3); hideDialog() }}>
-							<Avatar.Image
-								style={styles.avatar}
-								size={100}
-								source={Woman3}
-							/>
+						<TouchableOpacity
+							onPress={() => {
+								setProfilePhoto(Woman3);
+								hideDialog();
+							}}
+						>
+							<Avatar.Image style={styles.avatar} size={100} source={Woman3} />
 						</TouchableOpacity>
 
-						<TouchableOpacity onPress={() => { setProfilePhoto(WomanS2); hideDialog() }}>
-							<Avatar.Image
-								style={styles.avatar}
-								size={100}
-								source={WomanS2}
-							/>
+						<TouchableOpacity
+							onPress={() => {
+								setProfilePhoto(WomanS2);
+								hideDialog();
+							}}
+						>
+							<Avatar.Image style={styles.avatar} size={100} source={WomanS2} />
 						</TouchableOpacity>
 					</View>
 				</Dialog>
@@ -126,8 +135,8 @@ const styles = StyleSheet.create({
 	dialogContent: {
 		flexDirection: "column",
 		alignItems: "center",
-		justifyContent: "center",
-		height: 650,
+		justifyContent: "flex-start",
+		height: 530,
 	},
 	containerAvatars: {
 		width: "95%",
@@ -140,6 +149,6 @@ const styles = StyleSheet.create({
 		width: 100,
 		height: 100,
 		borderRadius: 50,
-		backgroundColor: "white"
+		backgroundColor: "white",
 	},
 });

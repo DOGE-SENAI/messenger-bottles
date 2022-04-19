@@ -1,6 +1,7 @@
 import Logo from "../../assets/logos/logo_128.png";
-import React from "react";
+import React, { useState } from "react";
 import ProfilesPhotos from "../../components/ProfilesPhotos";
+import { StatusBar } from "expo-status-bar";
 import {
 	StyleSheet,
 	View,
@@ -10,10 +11,14 @@ import {
 	TextInput,
 	TouchableOpacity,
 	Image,
-	StatusBar,
 } from "react-native";
 
 export default function SignUp() {
+	const [name, setName] = useState("");
+	const [username, setUsername] = useState("");
+	const [password, setPassword] = useState("");
+	const [confirmPassword, setConfirmPassword] = useState("");
+
 	return (
 		<ScrollView style={styles.scrollContainer}>
 			<View style={styles.containerMain}>
@@ -24,15 +29,16 @@ export default function SignUp() {
 				<View style={styles.containerImg}>
 					<ProfilesPhotos />
 
-					<SafeAreaView>
-						<TextInput
-							selectionColor={"rgba(0,0,0,0.5)"}
-							caretHidden={false}
-							style={styles.inputSmall}
-							placeholder="Nome"
-							keyboardType="default"
-						></TextInput>
-					</SafeAreaView>
+					<TextInput
+						selectionColor={"rgba(0,0,0,0.5)"}
+						caretHidden={false}
+						style={styles.inputSmall}
+						placeholder="Nome"
+						keyboardType="default"
+						autoCapitalize="words"
+						value={name}
+						onChangeText={(text) => setName(text)}
+					/>
 				</View>
 
 				<View style={styles.containerInputs}>
@@ -41,9 +47,12 @@ export default function SignUp() {
 							selectionColor={"rgba(0,0,0,0.5)"}
 							caretHidden={false}
 							style={styles.input}
-							placeholder="Email"
-							keyboardType="email-address"
-						></TextInput>
+							placeholder="Nome de Usuário"
+							keyboardType="default"
+							autoCapitalize="none"
+							value={username}
+							onChangeText={(text) => setUsername(text)}
+						/>
 					</SafeAreaView>
 
 					<SafeAreaView>
@@ -53,7 +62,11 @@ export default function SignUp() {
 							style={styles.input}
 							placeholder="Senha"
 							keyboardType="default"
-						></TextInput>
+							autoCapitalize="none"
+							secureTextEntry={true}
+							value={password}
+							onChangeText={(text) => setPassword(text)}
+						/>
 					</SafeAreaView>
 
 					<SafeAreaView>
@@ -63,18 +76,22 @@ export default function SignUp() {
 							style={styles.input}
 							placeholder="Confirme sua senha"
 							keyboardType="default"
-						></TextInput>
+							autoCapitalize="none"
+							secureTextEntry={true}
+							value={confirmPassword}
+							onChangeText={(text) => setConfirmPassword(text)}
+						/>
 					</SafeAreaView>
 				</View>
 
-				<View>
-					<TouchableOpacity style={styles.button}>
-						<View style={styles.contentBtn}>
-							<Text style={styles.buttonText}>Concluir</Text>
-						</View>
-					</TouchableOpacity>
-				</View>
+				<TouchableOpacity
+					style={styles.button}
+					onPress={() => console.log(name, username, password, confirmPassword)}
+				>
+					<Text style={styles.buttonText}>Concluir</Text>
+				</TouchableOpacity>
 			</View>
+			<StatusBar style="auto" />
 		</ScrollView>
 	);
 }
@@ -93,15 +110,17 @@ const styles = StyleSheet.create({
 	},
 	containerImg: {
 		marginTop: 100,
+		width: "80%",
 		display: "flex",
 		flexDirection: "row",
 		alignItems: "flex-end",
 		justifyContent: "space-between",
 	},
 	containerInputs: {
-		marginTop: 45,
+		marginTop: 20,
 		display: "flex",
-		height: "50%",
+		width: "80%",
+		height: "40%",
 	},
 	button: {
 		borderRadius: 10,
@@ -123,7 +142,7 @@ const styles = StyleSheet.create({
 		borderStyle: "solid",
 		backgroundColor: "rgba(255,255,255,0.47)",
 		borderColor: "rgba(0,0,0,0.5)",
-		width: 300,
+		width: "100%",
 		height: 50,
 		marginTop: 20,
 		paddingLeft: 10,
@@ -135,10 +154,9 @@ const styles = StyleSheet.create({
 		borderStyle: "solid",
 		backgroundColor: "rgba(255,255,255,0.47)",
 		borderColor: "rgba(0,0,0,0.5)",
-		width: 160,
+		width: 220,
 		height: 50,
 		marginTop: 0,
-		marginLeft: 30,
 		paddingLeft: 10,
 		fontSize: 20,
 	},

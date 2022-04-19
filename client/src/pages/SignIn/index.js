@@ -13,7 +13,7 @@ import { useNavigation } from "@react-navigation/native";
 
 export default function SignIn() {
 	const navigation = useNavigation();
-	const [email, setEmail] = useState("");
+	const [username, setUsername] = useState("");
 	const [password, setPassword] = useState("");
 
 	return (
@@ -24,15 +24,14 @@ export default function SignIn() {
 				</View>
 
 				<View style={styles.containerSecond}>
-					<Text style={styles.title}>Email</Text>
+					<Text style={styles.title}>Nome de Usuário</Text>
 
 					<SafeAreaView>
 						<TextInput
-							style={styles.inputEmail}
-							value={email}
+							style={styles.inputUser}
+							value={username}
 							autoCapitalize="none"
-							onChangeText={(email) => setEmail(email)}
-							keyboardType="email-address"
+							onChangeText={(username) => setUsername(username)}
 							caretHidden={false}
 							selectionColor={"rgba(0,0,0,0.5)"}
 						/>
@@ -55,7 +54,9 @@ export default function SignIn() {
 
 				<TouchableOpacity
 					style={styles.button}
-					onPress={() => navigation.navigate("contacts", { paramKey: email })}
+					onPress={() =>
+						navigation.navigate("contacts", { paramKey: username })
+					}
 				>
 					<Text style={styles.buttonTitle}>Entrar</Text>
 				</TouchableOpacity>
@@ -80,14 +81,14 @@ const styles = StyleSheet.create({
 	},
 	containerSecond: {
 		display: "flex",
+		width: "90%",
 	},
 	title: {
 		color: "#053361",
 		fontSize: 25,
 		marginTop: 60,
-		marginRight: "60%",
 	},
-	inputEmail: {
+	inputUser: {
 		backgroundColor: "rgba(255,255,255,0.47)",
 		borderColor: "rgba(0,0,0,0.5)",
 		borderRadius: 6,
