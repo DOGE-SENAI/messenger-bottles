@@ -1,24 +1,29 @@
-import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View } from "react-native";
-import Header from "../Header";
+import { Avatar } from "react-native-paper";
+import Woman1 from "../../assets/profiles/woman1.png";
 
 export default function Contact() {
   return (
-    <View>
-      <Header type="simple" />
+    <View style={styles.containerContact}>
+      <Avatar.Image style={styles.avatar} size={70} source={Woman1} />
 
-      <View style={styles.container}>
-        <Text>Open up App.js to start working on your app!</Text>
+      <View style={styles.infosContact}>
+        <Text>Fulano</Text>
+        <Text>+1</Text>
       </View>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
+  containerContact: {
+    flexDirection: "row",
+  },
+  avatar: {
+    backgroundColor: "white",
+  },
+  infosContact: {
+    width: "100%",
+    backgroundColor: "red",
   },
 });
