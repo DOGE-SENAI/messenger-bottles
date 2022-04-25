@@ -1,9 +1,24 @@
-import React from "react";
-import { ScrollView, StyleSheet, Text, TextInput, View } from "react-native";
+import React, { useState } from "react";
+import {
+	ScrollView,
+	StyleSheet,
+	Text,
+	TextInput,
+	TouchableOpacity,
+	View,
+} from "react-native";
+import IconEmoji from "react-native-vector-icons/Entypo";
+import IconSend from "react-native-vector-icons/Feather";
 import { Divider } from "react-native-paper";
 import Header from "../../components/Header";
+import EmojiPicker from "rn-emoji-keyboard";
 
 const Chat = () => {
+	const [isOpenEmojis, setIsOpenEmojis] = useState(false);
+	const handleEmoji = (emoji) => {
+		console.log(emoji);
+	};
+
 	return (
 		<View style={styles.containerMain}>
 			<Header type="chat" />
@@ -24,9 +39,18 @@ const Chat = () => {
 					/>
 
 					<View style={styles.actionsMessages}>
-						<Text>i</Text>
+						<TouchableOpacity onPress={() => setIsOpenEmojis(true)}>
+							<IconEmoji name="emoji-happy" size={24} color="#000" />
+						</TouchableOpacity>
+						<EmojiPicker
+							onEmojiSelected={handleEmoji}
+							open={isOpenEmojis}
+							onClose={() => setIsOpenEmojis(false)}
+						/>
 
-						<Text>b</Text>
+						<TouchableOpacity>
+							<IconSend name="send" size={24} color="#000" />
+						</TouchableOpacity>
 					</View>
 				</View>
 			</View>
@@ -48,6 +72,20 @@ const styles = StyleSheet.create({
 	containerSendMessage: {
 		width: "100%",
 		height: 80,
+		display: "flex",
+		flexDirection: "column",
+	},
+	sendMessageOptions: {
+		flexDirection: "row",
+		justifyContent: "space-between",
+		alignItems: "center",
+		marginHorizontal: 12,
+		height: "100%",
+	},
+	actionsMessages: {
+		flexDirection: "row",
+		justifyContent: "space-between",
+		width: 60,
 	},
 });
 

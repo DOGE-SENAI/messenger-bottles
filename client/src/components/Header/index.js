@@ -32,7 +32,7 @@ export default function Header({ type }) {
 			<>
 				<View style={styles.header}>
 					<View style={styles.boxAvatarArrow}>
-						<TouchableOpacity>
+						<TouchableOpacity onPress={() => navigation.goBack()}>
 							<Icon name="chevron-left" size={20} color="#000" />
 						</TouchableOpacity>
 

@@ -12,8 +12,11 @@ import {
 	TouchableOpacity,
 	Image,
 } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 
 export default function SignUp() {
+	const navigation = useNavigation();
+
 	const [name, setName] = useState("");
 	const [username, setUsername] = useState("");
 	const [password, setPassword] = useState("");
@@ -86,7 +89,7 @@ export default function SignUp() {
 
 				<TouchableOpacity
 					style={styles.button}
-					onPress={() => console.log(name, username, password, confirmPassword)}
+					onPress={() => navigation.navigate("contacts")}
 				>
 					<Text style={styles.buttonText}>Concluir</Text>
 				</TouchableOpacity>
