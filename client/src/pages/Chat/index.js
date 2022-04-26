@@ -13,11 +13,29 @@ import { Divider } from "react-native-paper";
 import Header from "../../components/Header";
 import EmojiPicker from "rn-emoji-keyboard";
 
+const fakeData = [
+	{
+		id: 1,
+		create_at: "12/12/2012",
+		from: "Herobrine",
+		message: "Hello there!",
+	},
+	{
+		id: 2,
+		create_at: "14/12/2012",
+		from: "Steve",
+		message: "Hello! How are you?",
+	},
+];
+
 const Chat = () => {
 	const [isOpenEmojis, setIsOpenEmojis] = useState(false);
 	const handleEmoji = (emoji) => {
 		console.log(emoji);
 	};
+
+	const [message, setMessage] = useState("");
+	const [messageList, setMessageList] = useState([]);
 
 	return (
 		<View style={styles.containerMain}>
@@ -34,6 +52,8 @@ const Chat = () => {
 					<TextInput
 						style={styles.writeMessage}
 						caretHidden={false}
+						multiline={true}
+						editable
 						placeholder="Sua Mensagem"
 						selectionColor={"rgba(0,0,0,0.5)"}
 					/>
@@ -75,17 +95,24 @@ const styles = StyleSheet.create({
 		display: "flex",
 		flexDirection: "column",
 	},
+	writeMessage: {
+		flex: 1,
+		height: "100%",
+		fontSize: 18,
+	},
 	sendMessageOptions: {
 		flexDirection: "row",
 		justifyContent: "space-between",
 		alignItems: "center",
 		marginHorizontal: 12,
 		height: "100%",
+		padding: 8,
 	},
 	actionsMessages: {
 		flexDirection: "row",
 		justifyContent: "space-between",
 		width: 60,
+		marginStart: 8,
 	},
 });
 
