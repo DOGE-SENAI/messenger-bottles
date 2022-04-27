@@ -10,6 +10,7 @@ import {
 } from "react-native";
 import { View, Text } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import { StatusBar } from "expo-status-bar";
 
 export default function SignIn() {
 	const navigation = useNavigation();
@@ -61,6 +62,7 @@ export default function SignIn() {
 					<Text style={styles.buttonTitle}>Entrar</Text>
 				</TouchableOpacity>
 			</View>
+			<StatusBar style="auto" />
 		</ScrollView>
 	);
 }

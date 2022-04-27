@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import Logo from "../../assets/logos/logo_256.png";
 import * as Animatable from "react-native-animatable";
 import { useNavigation } from "@react-navigation/native";
+import { StatusBar } from "expo-status-bar";
 
 export default function Welcome() {
 	const navigation = useNavigation();
@@ -41,6 +42,7 @@ export default function Welcome() {
 					</TouchableOpacity>
 				</View>
 			</Animatable.View>
+			<StatusBar style="auto" />
 		</View>
 	);
 }
