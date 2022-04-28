@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import {
   ScrollView,
   StyleSheet,
@@ -14,12 +14,11 @@ import Header from "../../components/Header";
 import EmojiPicker from "rn-emoji-keyboard";
 import BoxMessages from "../../components/BoxMessage";
 
+import { KeyboardArea, KeyboardAreaRef } from "react-native-keyboard-area";
+
 const Chat = () => {
   const [isOpenEmojis, setIsOpenEmojis] = useState(false);
   const chatUser = "Herobrine";
-  const handleEmoji = (emoji) => {
-    console.log(emoji);
-  };
 
   const fakeData = [
     {
@@ -64,14 +63,63 @@ const Chat = () => {
       from: "Herobrine",
       message: "asdasdsa",
     },
+    {
+      id: 8,
+      create_at: "12/12/2012",
+      from: "Herobrine",
+      message: "asdasdsa",
+    },
+    {
+      id: 9,
+      create_at: "12/12/2012",
+      from: "Herobrine",
+      message: "asdasdsa",
+    },
+    {
+      id: 10,
+      create_at: "12/12/2012",
+      from: "Herobrine",
+      message: "asdasdsa",
+    },
+    {
+      id: 11,
+      create_at: "12/12/2012",
+      from: "Herobrine",
+      message: "asdasdsa",
+    },
+    {
+      id: 12,
+      create_at: "12/12/2012",
+      from: "Herobrine",
+      message: "asdasdsa",
+    },
+    {
+      id: 13,
+      create_at: "12/12/2012",
+      from: "Herobrine",
+      message: "asdasdsa",
+    },
+    {
+      id: 14,
+      create_at: "12/12/2012",
+      from: "Herobrine",
+      message: "asdasdsa",
+    },
   ];
 
   const [message, setMessage] = useState("");
   const [messageList, setMessageList] = useState([]);
-  const [countId, setCountId] = useState(messageList.length);
+  const [countId, setCountId] = useState(fakeData.length + 1);
+
+  const handleEmoji = (emoji) => {
+    console.log(emoji.emoji);
+    setMessage((msg) => msg + emoji.emoji);
+  };
+
+  const scrollViewRef = useRef();
 
   const sendMessage = () => {
-    setCountId(countId + 1);
+    setCountId((oldCount) => oldCount + 1);
     messageList.push({
       id: countId,
       create_at: "12/12/2012",
@@ -88,14 +136,19 @@ const Chat = () => {
     setMessageList(fakeData);
   }, []);
 
+  const handleUserClick = () => {};
+
   return (
     <View style={styles.containerMain}>
       <Header type="chat" />
 
       <ScrollView
+        ref={scrollViewRef}
+        onContentSizeChange={() => {
+          scrollViewRef.current.scrollToEnd({ animated: true });
+        }}
         style={styles.scrollview}
         contentContainerStyle={styles.containerMessages}
-        contentOffset={{ y: 600 }}
         showsVerticalScrollIndicator={false}
       >
         {messageList.map(({ id, from, message }) => {
@@ -115,6 +168,7 @@ const Chat = () => {
 
         <View style={styles.sendMessageOptions}>
           <TextInput
+            // onTouchStart={scrollViewRef.current.scrollToEnd({ animated: true })}
             style={styles.writeMessage}
             caretHidden={false}
             multiline={true}
