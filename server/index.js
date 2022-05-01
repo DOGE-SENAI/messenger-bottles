@@ -1,43 +1,17 @@
-const express = require('express')
-const cors =  require('cors')
-const mongoose = require('mongoose')
-const socket = require('socket.io')
-const authRoutes = require('./routes/auth')
-const messageRoutes = require('./routes/messages')
-require('dotenv').config()
-
+const express = require("express");
 const app = express();
+const http = require("http");
+const server = http.createServer(app);
+const {Server} = require('socket.io')
+const io = new Server(server)
 
-app.use(cors())
-app.use(express.json())
+io.on("connection", socket => {
+  console.log(on)
+  console.log("a user connected :D");
+  socket.on("chat message", msg => {
+    console.log(msg);
+    io.emit("chat message", msg);
+  });
+});
 
-mongoose
-    .connect(process.env.MONGO_URL, {
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-    })
-    .then(() => {
-        console.log("DB Connection Successfull")
-    })
-    .catch((err) => {
-        console.log(err.message)
-    })
-
-app.use('/api/auth', authRoutes)
-app.use('/api/messages', messageRoutes)
-
-const server = app.listen(process.env.PORT, () => {
-    console.log(`Server started on ${process.env.PORT}`)
-})
-
-const io = socket(server, {
-    cors: {
-        origin: 'http://localhost:19006',
-        credentials: true,
-    }
-})
-
-//global.onlineUsers = new Map()
-io.on('connection', (socket) => {
-
-})
+server.listen(3000, () => console.log("server running on port: 3000"));

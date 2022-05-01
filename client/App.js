@@ -6,11 +6,12 @@ import ConfigUser from "./src/pages/ConfigUser";
 import SignIn from "./src/pages/SignIn";
 import SignUp from "./src/pages/SignUp";
 import Welcome from "./src/pages/Welcome";
+import Chat  from "./src/pages/Chat/Chat";
 
 export default function App() {
 	return (
 		<Provider>
-			<Routes />
+			<Chat />
 		</Provider>
 	);
 }
