@@ -3,6 +3,7 @@ import React from "react";
 import { StyleSheet, View, ScrollView } from "react-native";
 import Contact from "../../components/Contact";
 import Header from "../../components/Header";
+import { FAB } from "react-native-paper";
 
 const ListContacts = () => {
   const navigation = useNavigation();
@@ -19,6 +20,13 @@ const ListContacts = () => {
           <Contact partner="Fulano 4" />
         </View>
       </ScrollView>
+
+      <FAB
+        style={styles.fab}
+        icon="plus"
+        animated
+        onPress={() => navigation.navigate("chat")}
+      />
     </View>
   );
 };
@@ -39,6 +47,18 @@ const styles = StyleSheet.create({
   },
   scrollview: {
     width: "80%",
+  },
+  fab: {
+    position: "absolute",
+    margin: 16,
+    right: 20,
+    bottom: 20,
+    width: 60,
+    height: 60,
+    borderRadius: 50,
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "#7DBDED",
   },
 });
 
