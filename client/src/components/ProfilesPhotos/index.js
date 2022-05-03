@@ -2,15 +2,26 @@ import { useState } from "react";
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { Dialog, Portal, Avatar } from "react-native-paper";
 import DefaultAvatar from "../../assets/images/DefaultAvatar.png";
-import Man1 from "../../assets/profiles/man1.png";
-import Man2 from "../../assets/profiles/man2.png";
-import Man3 from "../../assets/profiles/man3.png";
-import ManS1 from "../../assets/profiles/manSurprise1.png";
-import ManS2 from "../../assets/profiles/manSurprise2.png";
-import Woman1 from "../../assets/profiles/woman1.png";
-import Woman2 from "../../assets/profiles/woman2.png";
-import Woman3 from "../../assets/profiles/woman3.png";
-import WomanS2 from "../../assets/profiles/womanSurprise2.png";
+// import Man1 from "../../assets/profiles/man1.png";
+// import Man2 from "../../assets/profiles/man2.png";
+// import Man3 from "../../assets/profiles/man3.png";
+// import ManS1 from "../../assets/profiles/manSurprise1.png";
+// import ManS2 from "../../assets/profiles/manSurprise2.png";
+// import Woman1 from "../../assets/profiles/woman1.png";
+// import Woman2 from "../../assets/profiles/woman2.png";
+// import Woman3 from "../../assets/profiles/woman3.png";
+// import WomanS2 from "../../assets/profiles/womanSurprise2.png";
+
+// Images
+const Man1 = "https://imgur.com/UShnDqw.png";
+const Man2 = "https://imgur.com/qOemCDS.png";
+const Man3 = "https://imgur.com/XcR6HFm.png";
+const ManS1 = "https://imgur.com/isdoOFG.png";
+const ManS2 = "https://imgur.com/TA5yCDG.png";
+const Woman1 = "https://imgur.com/xKa916g.png";
+const Woman2 = "https://imgur.com/q0FeW1H.png";
+const Woman3 = "https://imgur.com/8AzpZ95.png";
+const WomanS2 = "https://imgur.com/ghoUKTN.png";
 
 export default function ProfilesPhotos() {
   const [visible, setVisible] = useState(false);
@@ -32,7 +43,7 @@ export default function ProfilesPhotos() {
           onDismiss={hideDialog}
           style={styles.dialogContent}
         >
-          <Dialog.Title>Selecione a imagem </Dialog.Title>
+          <Dialog.Title>Selecione a imagem</Dialog.Title>
           <View style={styles.containerAvatars}>
             <TouchableOpacity
               onPress={() => {
@@ -40,7 +51,11 @@ export default function ProfilesPhotos() {
                 hideDialog();
               }}
             >
-              <Avatar.Image style={styles.avatar} size={100} source={Man1} />
+              <Avatar.Image
+                style={styles.avatar}
+                size={100}
+                source={{ uri: Man1 }}
+              />
             </TouchableOpacity>
 
             <TouchableOpacity
@@ -49,7 +64,11 @@ export default function ProfilesPhotos() {
                 hideDialog();
               }}
             >
-              <Avatar.Image style={styles.avatar} size={100} source={Man2} />
+              <Avatar.Image
+                style={styles.avatar}
+                size={100}
+                source={{ uri: Man2 }}
+              />
             </TouchableOpacity>
 
             <TouchableOpacity
@@ -58,7 +77,11 @@ export default function ProfilesPhotos() {
                 hideDialog();
               }}
             >
-              <Avatar.Image style={styles.avatar} size={100} source={Man3} />
+              <Avatar.Image
+                style={styles.avatar}
+                size={100}
+                source={{ uri: Man3 }}
+              />
             </TouchableOpacity>
 
             <TouchableOpacity
@@ -67,7 +90,11 @@ export default function ProfilesPhotos() {
                 hideDialog();
               }}
             >
-              <Avatar.Image style={styles.avatar} size={100} source={ManS1} />
+              <Avatar.Image
+                style={styles.avatar}
+                size={100}
+                source={{ uri: ManS1 }}
+              />
             </TouchableOpacity>
 
             <TouchableOpacity
@@ -76,7 +103,11 @@ export default function ProfilesPhotos() {
                 hideDialog();
               }}
             >
-              <Avatar.Image style={styles.avatar} size={100} source={ManS2} />
+              <Avatar.Image
+                style={styles.avatar}
+                size={100}
+                source={{ uri: Woman1 }}
+              />
             </TouchableOpacity>
 
             <TouchableOpacity
@@ -85,7 +116,11 @@ export default function ProfilesPhotos() {
                 hideDialog();
               }}
             >
-              <Avatar.Image style={styles.avatar} size={100} source={Woman1} />
+              <Avatar.Image
+                style={styles.avatar}
+                size={100}
+                source={{ uri: ManS2 }}
+              />
             </TouchableOpacity>
 
             <TouchableOpacity
@@ -94,7 +129,11 @@ export default function ProfilesPhotos() {
                 hideDialog();
               }}
             >
-              <Avatar.Image style={styles.avatar} size={100} source={Woman2} />
+              <Avatar.Image
+                style={styles.avatar}
+                size={100}
+                source={{ uri: Woman2 }}
+              />
             </TouchableOpacity>
 
             <TouchableOpacity
@@ -103,7 +142,11 @@ export default function ProfilesPhotos() {
                 hideDialog();
               }}
             >
-              <Avatar.Image style={styles.avatar} size={100} source={Woman3} />
+              <Avatar.Image
+                style={styles.avatar}
+                size={100}
+                source={{ uri: WomanS2 }}
+              />
             </TouchableOpacity>
 
             <TouchableOpacity
@@ -112,7 +155,11 @@ export default function ProfilesPhotos() {
                 hideDialog();
               }}
             >
-              <Avatar.Image style={styles.avatar} size={100} source={WomanS2} />
+              <Avatar.Image
+                style={styles.avatar}
+                size={100}
+                source={{ uri: Woman3 }}
+              />
             </TouchableOpacity>
           </View>
         </Dialog>
