@@ -6,9 +6,8 @@ import Icon from "react-native-vector-icons/FontAwesome";
 import Avatar from "../../assets/profiles/man1.png";
 import { useNavigation } from "@react-navigation/native";
 
-export default function Header({ type }) {
+export default function Header({ type, user, clearMessages }) {
 	const navigation = useNavigation();
-	const userChat = "Yun Li";
 	const [visible, setVisible] = useState(false);
 	const openMenu = () => setVisible(true);
 	const closeMenu = () => setVisible(false);
@@ -38,7 +37,7 @@ export default function Header({ type }) {
 
 						<Image style={styles.avatar} source={Avatar} />
 
-						<Text style={styles.title(type)}>{userChat}</Text>
+						<Text style={styles.title(type)}>{user}</Text>
 					</View>
 
 					<Menu
@@ -89,7 +88,7 @@ export default function Header({ type }) {
 					<View style={styleChatGeral.infosChatGeral}>
 						<Text style={styleChatGeral.titleApp}>Messenger Bottles</Text>
 
-						<Text style={styleChatGeral.titleUser}>{userChat}</Text>
+						<Text style={styleChatGeral.titleUser}>{user}</Text>
 					</View>
 
 					<Menu
@@ -106,7 +105,11 @@ export default function Header({ type }) {
 							</Button>
 						}
 					>
-						<Menu.Item icon="broom" title="Limpar" />
+						<Menu.Item
+							icon="broom"
+							title="Limpar"
+							onPress={() => clearMessages(true)}
+						/>
 						<Menu.Item
 							icon="logout"
 							title="Sair"

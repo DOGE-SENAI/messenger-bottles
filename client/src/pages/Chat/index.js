@@ -2,7 +2,6 @@ import React, { useEffect, useRef, useState } from "react";
 import {
 	ScrollView,
 	StyleSheet,
-	Text,
 	TextInput,
 	TouchableOpacity,
 	View,
@@ -15,14 +14,16 @@ import EmojiPicker from "rn-emoji-keyboard";
 import BoxMessages from "../../components/BoxMessage";
 
 const Chat = () => {
+	const scrollViewRef = useRef();
+
 	const [isOpenEmojis, setIsOpenEmojis] = useState(false);
-	const chatUser = "Herobrine";
+	const chatUser = "Yun Li";
 
 	const fakeData = [
 		{
 			id: 1,
 			create_at: "12/12/2012",
-			from: "Herobrine",
+			from: "Yun Li",
 			message: "Hello there!",
 		},
 		{
@@ -34,19 +35,19 @@ const Chat = () => {
 		{
 			id: 3,
 			create_at: "12/12/2022",
-			from: "Steve",
+			from: "Yun Li",
 			message: "?????",
 		},
 		{
 			id: 4,
 			create_at: "12/12/2012",
-			from: "Herobrine",
+			from: "Yun Li",
 			message: "asdasdsa",
 		},
 		{
 			id: 5,
 			create_at: "12/12/2012",
-			from: "Herobrine",
+			from: "Yun Li",
 			message: "asdasdsa",
 		},
 	];
@@ -59,19 +60,14 @@ const Chat = () => {
 		setMessage((msg) => msg + emoji.emoji);
 	};
 
-	const scrollViewRef = useRef();
-
 	const sendMessage = () => {
 		setCountId((oldCount) => oldCount + 1);
 		messageList.push({
 			id: countId,
 			create_at: "12/12/2012",
-			from: "Herobrine",
+			from: "Yun Li",
 			message: message,
 		});
-		console.log(messageList);
-		console.log(countId);
-		console.log(messageList.length);
 		setMessage("");
 	};
 
@@ -79,9 +75,13 @@ const Chat = () => {
 		setMessageList(fakeData);
 	}, []);
 
+	const clearMessages = (clear) => {
+		clear && setMessageList([]);
+	};
+
 	return (
 		<View style={styles.containerMain}>
-			<Header type="chat-geral" />
+			<Header type="chat-geral" user={chatUser} clearMessages={clearMessages} />
 
 			<ScrollView
 				ref={scrollViewRef}
