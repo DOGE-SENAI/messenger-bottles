@@ -1,17 +1,22 @@
-const express = require("express");
+const express = require('express')
+const bodyParser = require('body-parser')
+const cors =  require('cors')
+const routes = require('./routes')
+const db = require("./src/models");
+
 const app = express();
-const http = require("http");
-const server = http.createServer(app);
-const {Server} = require('socket.io')
-const io = new Server(server)
 
-io.on("connection", socket => {
-  console.log(on)
-  console.log("a user connected :D");
-  socket.on("chat message", msg => {
-    console.log(msg);
-    io.emit("chat message", msg);
+app.use(cors())
+app.use(bodyParser.urlencoded({extended: true}))
+app.use(bodyParser.json())
+app.use(routes)
+
+
+//app.listen(3000, () =>{
+//    console.log("Servidor Rodando na Porta 3000")
+///})
+
+db.sequelize.sync().then(() => {
+    console.log("Conectado ao banco de dados");
+    app.listen(3000, () => console.log(`Example app listening on port 3000!`));
   });
-});
-
-server.listen(3000, () => console.log("server running on port: 3000"));
