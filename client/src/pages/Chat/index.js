@@ -12,12 +12,14 @@ import { Divider } from "react-native-paper";
 import Header from "../../components/Header";
 import EmojiPicker from "rn-emoji-keyboard";
 import BoxMessages from "../../components/BoxMessage";
+import { useNavigation } from "@react-navigation/native";
 
-const Chat = () => {
+const Chat = ({ route }) => {
+	const navigation = useNavigation();
 	const scrollViewRef = useRef();
 
 	const [isOpenEmojis, setIsOpenEmojis] = useState(false);
-	const chatUser = "Yun Li";
+	const chatUser = route.params.paramKey;
 
 	const fakeData = [
 		{
