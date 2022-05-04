@@ -55,9 +55,7 @@ export default function SignIn() {
 
 				<TouchableOpacity
 					style={styles.button}
-					onPress={() =>
-						navigation.navigate("contacts", { paramKey: username })
-					}
+					onPress={() => navigation.navigate("chat", { paramKey: username })}
 				>
 					<Text style={styles.buttonTitle}>Entrar</Text>
 				</TouchableOpacity>
