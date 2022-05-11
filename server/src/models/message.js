@@ -3,6 +3,8 @@ module.exports = (sequelize, DataTypes) => {
       text: DataTypes.TEXT('long'),
       //userId: DataTypes.INTEGER,
       time: DataTypes.DATE,
+    }, {
+      timestamps: false,
     });
     Message.associate = (models) => {
       Message.belongsTo(models.User,

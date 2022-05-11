@@ -1,21 +1,35 @@
-const { Message } = require('../models/message')
+const { Message } = require('../models')
 
 module.exports = {
 
     async addMessage(req, res) {
 
         try {
-            const { text, userId, time} = req.body
+            const { text, user_id, time} = req.body
 
-            const message = await Message.findOne({ where: { userId } })
+            const messages = await Message.findOne({ where: { user_id } })
 
-            if (message == "") {
+            if (messages == "") {
                 res.status(401).json({ message: 'Menssagem vazia!' })
             } else {
-                const message = await Message.create({ text, userId, time })
+                const messages = await Message.create({ text, user_id, time })
 
-                res.status(200).json({ message })
+                res.status(200).json({ messages })
             }
+        } catch (error) {
+            res.status(400).json({ error })
+            console.log(error)
+        }
+    },
+
+    async listMessage(req, res) {
+        try {
+            const messages = await Message.findAll()
+
+            if (!messages) {
+                res.status(401).json({message: "Não há mensagens inseridas"})
+            }
+            res.status(200).json({messages})
         } catch (error) {
             res.status(400).json({ error })
         }
