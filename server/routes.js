@@ -11,6 +11,8 @@ router.get('/user-list', UserController.listUser)
 
 router.post('/add-message', MessageController.addMessage)
 router.get('/list-message', MessageController.listMessage )
+router.put('/update-message/:id', MessageController.updateMessage)
+router.delete('/delete-message', MessageController.deleteMessage)
 
 module.exports = router
 
