@@ -1,47 +1,63 @@
-import {
-  StyleSheet,
-  Text,
-  View,
-  Pressable,
-  TouchableOpacity,
-} from "react-native";
-import { Avatar } from "react-native-paper";
+import { useState } from "react";
+import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
+import { Avatar, IconButton } from "react-native-paper";
 
 const Man2 = "https://imgur.com/qOemCDS.png";
 
-export default function BoxMessages({ from, sender, message, onLongPress }) {
+export default function BoxMessages({ from, sender, message, idMessage }) {
+  const [butttonDelete, setButttonDelete] = useState("none");
+
   return (
-    <View style={styles.containerContact(sender)}>
-      <View style={styles.contentMessage}>
-        <View style={styles.userMessage(sender)}>
-          {sender && (
-            <Avatar.Image
-              size={50}
-              style={styles.avatar}
-              source={{ uri: Man2 }}
-            />
-          )}
+    <>
+      <View style={styles.containerContact(sender)}>
+        <View style={styles.contentMessage}>
+          <View style={styles.userMessage(sender)}>
+            {sender && (
+              <Avatar.Image
+                size={50}
+                style={styles.avatar}
+                source={{ uri: Man2 }}
+              />
+            )}
 
-          <Text style={styles.users}>{from}</Text>
+            <Text style={styles.users}>{from}</Text>
 
-          {!sender && (
-            <Avatar.Image
-              size={50}
-              style={styles.avatar}
-              source={{ uri: Man2 }}
-            />
-          )}
-        </View>
+            {!sender && (
+              <Avatar.Image
+                size={50}
+                style={styles.avatar}
+                source={{ uri: Man2 }}
+              />
+            )}
+          </View>
 
-        <TouchableOpacity onLongPress={() => onLongPress(true, from)}>
-          <Text
-            style={[styles.message, sender ? styles.recipient : styles.sender]}
+          <TouchableOpacity
+            onPress={() => setButttonDelete("none")}
+            onLongPress={() => {
+              if (!sender) setButttonDelete("flex");
+            }}
           >
-            {message}
-          </Text>
-        </TouchableOpacity>
+            <Text
+              style={[
+                styles.message,
+                sender ? styles.recipient : styles.sender,
+              ]}
+            >
+              {message}
+            </Text>
+          </TouchableOpacity>
+        </View>
       </View>
-    </View>
+
+      <IconButton
+        icon="broom"
+        style={[styles.btnDelete, { display: butttonDelete }]}
+        onPress={() => {
+          console.log(idMessage);
+          setButttonDelete("none");
+        }}
+      />
+    </>
   );
 }
 
@@ -95,5 +111,10 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     bottom: -14,
     zIndex: 1,
+  },
+
+  btnDelete: {
+    borderWidth: 1,
+    borderColor: "#000",
   },
 });
