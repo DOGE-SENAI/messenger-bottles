@@ -1,201 +1,196 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { Dialog, Portal, Avatar } from "react-native-paper";
 import DefaultAvatar from "../../assets/images/DefaultAvatar.png";
-// import Man1 from "../../assets/profiles/man1.png";
-// import Man2 from "../../assets/profiles/man2.png";
-// import Man3 from "../../assets/profiles/man3.png";
-// import ManS1 from "../../assets/profiles/manSurprise1.png";
-// import ManS2 from "../../assets/profiles/manSurprise2.png";
-// import Woman1 from "../../assets/profiles/woman1.png";
-// import Woman2 from "../../assets/profiles/woman2.png";
-// import Woman3 from "../../assets/profiles/woman3.png";
-// import WomanS2 from "../../assets/profiles/womanSurprise2.png";
 
 // Images
 const Man1 = "https://imgur.com/UShnDqw.png";
-const Man2 = "https://imgur.com/qOemCDS.png";
-const Man3 = "https://imgur.com/XcR6HFm.png";
-const ManS1 = "https://imgur.com/isdoOFG.png";
-const ManS2 = "https://imgur.com/TA5yCDG.png";
-const Woman1 = "https://imgur.com/xKa916g.png";
-const Woman2 = "https://imgur.com/q0FeW1H.png";
-const Woman3 = "https://imgur.com/8AzpZ95.png";
-const WomanS2 = "https://imgur.com/ghoUKTN.png";
+const Man2 = "https://imgur.com/TA5yCDG.png";
+const Man3 = "https://imgur.com/xKa916g.png";
+const Man4 = "https://imgur.com/8AzpZ95.png";
+const Man5 = "https://imgur.com/ghoUKTN.png";
+const Woman1 = "https://imgur.com/qOemCDS.png";
+const Woman2 = "https://imgur.com/XcR6HFm.png";
+const Woman3 = "https://imgur.com/isdoOFG.png";
+const Woman4 = "https://imgur.com/q0FeW1H.png";
 
-export default function ProfilesPhotos() {
-  const [visible, setVisible] = useState(false);
-  const [profilePhoto, setProfilePhoto] = useState(DefaultAvatar);
+export default function ProfilesPhotos({ profile }) {
+	const [visible, setVisible] = useState(false);
+	const [profilePhoto, setProfilePhoto] = useState(Man1);
 
-  const showDialog = () => setVisible(true);
+	useEffect(() => {
+		profile(profilePhoto);
+	}, [profilePhoto]);
 
-  const hideDialog = () => setVisible(false);
+	const showDialog = () => setVisible(true);
 
-  return (
-    <View>
-      <TouchableOpacity onPress={showDialog}>
-        <Image source={profilePhoto} style={styles.img} />
-      </TouchableOpacity>
+	const hideDialog = () => setVisible(false);
 
-      <Portal>
-        <Dialog
-          visible={visible}
-          onDismiss={hideDialog}
-          style={styles.dialogContent}
-        >
-          <Dialog.Title>Selecione a imagem</Dialog.Title>
-          <View style={styles.containerAvatars}>
-            <TouchableOpacity
-              onPress={() => {
-                setProfilePhoto(Man1);
-                hideDialog();
-              }}
-            >
-              <Avatar.Image
-                style={styles.avatar}
-                size={100}
-                source={{ uri: Man1 }}
-              />
-            </TouchableOpacity>
+	return (
+		<View>
+			<TouchableOpacity onPress={showDialog}>
+				<Image source={{ uri: profilePhoto }} style={styles.img} />
+			</TouchableOpacity>
 
-            <TouchableOpacity
-              onPress={() => {
-                setProfilePhoto(Man2);
-                hideDialog();
-              }}
-            >
-              <Avatar.Image
-                style={styles.avatar}
-                size={100}
-                source={{ uri: Man2 }}
-              />
-            </TouchableOpacity>
+			<Portal>
+				<Dialog
+					visible={visible}
+					onDismiss={hideDialog}
+					style={styles.dialogContent}
+				>
+					<Dialog.Title>Selecione a imagem</Dialog.Title>
+					<View style={styles.containerAvatars}>
+						<TouchableOpacity
+							onPress={() => {
+								setProfilePhoto(Man1);
+								hideDialog();
+							}}
+						>
+							<Avatar.Image
+								style={styles.avatar}
+								size={100}
+								source={{ uri: Man1 }}
+							/>
+						</TouchableOpacity>
 
-            <TouchableOpacity
-              onPress={() => {
-                setProfilePhoto(Man3);
-                hideDialog();
-              }}
-            >
-              <Avatar.Image
-                style={styles.avatar}
-                size={100}
-                source={{ uri: Man3 }}
-              />
-            </TouchableOpacity>
+						<TouchableOpacity
+							onPress={() => {
+								setProfilePhoto(Man2);
+								hideDialog();
+							}}
+						>
+							<Avatar.Image
+								style={styles.avatar}
+								size={100}
+								source={{ uri: Man2 }}
+							/>
+						</TouchableOpacity>
 
-            <TouchableOpacity
-              onPress={() => {
-                setProfilePhoto(ManS1);
-                hideDialog();
-              }}
-            >
-              <Avatar.Image
-                style={styles.avatar}
-                size={100}
-                source={{ uri: ManS1 }}
-              />
-            </TouchableOpacity>
+						<TouchableOpacity
+							onPress={() => {
+								setProfilePhoto(Man3);
+								hideDialog();
+							}}
+						>
+							<Avatar.Image
+								style={styles.avatar}
+								size={100}
+								source={{ uri: Man3 }}
+							/>
+						</TouchableOpacity>
 
-            <TouchableOpacity
-              onPress={() => {
-                setProfilePhoto(ManS2);
-                hideDialog();
-              }}
-            >
-              <Avatar.Image
-                style={styles.avatar}
-                size={100}
-                source={{ uri: Woman1 }}
-              />
-            </TouchableOpacity>
+						<TouchableOpacity
+							onPress={() => {
+								setProfilePhoto(Man4);
+								hideDialog();
+							}}
+						>
+							<Avatar.Image
+								style={styles.avatar}
+								size={100}
+								source={{ uri: Man4 }}
+							/>
+						</TouchableOpacity>
 
-            <TouchableOpacity
-              onPress={() => {
-                setProfilePhoto(Woman1);
-                hideDialog();
-              }}
-            >
-              <Avatar.Image
-                style={styles.avatar}
-                size={100}
-                source={{ uri: ManS2 }}
-              />
-            </TouchableOpacity>
+						<TouchableOpacity
+							onPress={() => {
+								setProfilePhoto(Man5);
+								hideDialog();
+							}}
+						>
+							<Avatar.Image
+								style={styles.avatar}
+								size={100}
+								source={{ uri: Man5 }}
+							/>
+						</TouchableOpacity>
 
-            <TouchableOpacity
-              onPress={() => {
-                setProfilePhoto(Woman2);
-                hideDialog();
-              }}
-            >
-              <Avatar.Image
-                style={styles.avatar}
-                size={100}
-                source={{ uri: Woman2 }}
-              />
-            </TouchableOpacity>
+						<TouchableOpacity
+							onPress={() => {
+								setProfilePhoto(Woman1);
+								hideDialog();
+							}}
+						>
+							<Avatar.Image
+								style={styles.avatar}
+								size={100}
+								source={{ uri: Woman1 }}
+							/>
+						</TouchableOpacity>
 
-            <TouchableOpacity
-              onPress={() => {
-                setProfilePhoto(Woman3);
-                hideDialog();
-              }}
-            >
-              <Avatar.Image
-                style={styles.avatar}
-                size={100}
-                source={{ uri: WomanS2 }}
-              />
-            </TouchableOpacity>
+						<TouchableOpacity
+							onPress={() => {
+								setProfilePhoto(Woman2);
+								hideDialog();
+							}}
+						>
+							<Avatar.Image
+								style={styles.avatar}
+								size={100}
+								source={{ uri: Woman2 }}
+							/>
+						</TouchableOpacity>
 
-            <TouchableOpacity
-              onPress={() => {
-                setProfilePhoto(WomanS2);
-                hideDialog();
-              }}
-            >
-              <Avatar.Image
-                style={styles.avatar}
-                size={100}
-                source={{ uri: Woman3 }}
-              />
-            </TouchableOpacity>
-          </View>
-        </Dialog>
-      </Portal>
-    </View>
-  );
+						<TouchableOpacity
+							onPress={() => {
+								setProfilePhoto(Woman3);
+								hideDialog();
+							}}
+						>
+							<Avatar.Image
+								style={styles.avatar}
+								size={100}
+								source={{ uri: Woman3 }}
+							/>
+						</TouchableOpacity>
+
+						<TouchableOpacity
+							onPress={() => {
+								setProfilePhoto(Woman4);
+								hideDialog();
+							}}
+						>
+							<Avatar.Image
+								style={styles.avatar}
+								size={100}
+								source={{ uri: Woman4 }}
+							/>
+						</TouchableOpacity>
+					</View>
+				</Dialog>
+			</Portal>
+		</View>
+	);
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  avatar: {
-    backgroundColor: "white",
-    margin: 5,
-  },
-  dialogContent: {
-    flexDirection: "column",
-    alignItems: "center",
-    justifyContent: "flex-start",
-    height: 530,
-  },
-  containerAvatars: {
-    width: "95%",
-    flexDirection: "row",
-    flexWrap: "wrap",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  img: {
-    width: 100,
-    height: 100,
-    borderRadius: 50,
-    backgroundColor: "white",
-  },
+	container: {
+		flex: 1,
+		backgroundColor: "#fff",
+		alignItems: "center",
+		justifyContent: "center",
+	},
+	avatar: {
+		backgroundColor: "white",
+		margin: 5,
+	},
+	dialogContent: {
+		flexDirection: "column",
+		alignItems: "center",
+		justifyContent: "flex-start",
+		height: 530,
+	},
+	containerAvatars: {
+		width: "95%",
+		flexDirection: "row",
+		flexWrap: "wrap",
+		alignItems: "center",
+		justifyContent: "center",
+	},
+	img: {
+		width: 100,
+		height: 100,
+		borderRadius: 50,
+		backgroundColor: "white",
+	},
 });

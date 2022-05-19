@@ -1,5 +1,5 @@
 import Logo from "../../assets/logos/logo_128.png";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ProfilesPhotos from "../../components/ProfilesPhotos";
 import { StatusBar } from "expo-status-bar";
 import {
@@ -13,6 +13,7 @@ import {
 	Image,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import api from "../../service/api";
 
 export default function SignUp() {
 	const navigation = useNavigation();
@@ -21,6 +22,32 @@ export default function SignUp() {
 	const [username, setUsername] = useState("");
 	const [password, setPassword] = useState("");
 	const [confirmPassword, setConfirmPassword] = useState("");
+	const [profilePhoto, setProfilePhoto] = useState("");
+
+	const handlePhoto = (profile) => setProfilePhoto(profile);
+
+	const register = () => {
+		if (password === confirmPassword) {
+			api
+				.post("/user-create", {
+					name,
+					username,
+					password,
+					img: profilePhoto,
+				})
+				.then((response) => {
+					console.log(response.data);
+					console.log("create a new user");
+				});
+
+			setName("");
+			setUsername("");
+			setPassword("");
+			setConfirmPassword("");
+
+			navigation.navigate("welcome");
+		}
+	};
 
 	return (
 		<ScrollView style={styles.scrollContainer}>
@@ -30,7 +57,7 @@ export default function SignUp() {
 				</View>
 
 				<View style={styles.containerImg}>
-					<ProfilesPhotos />
+					<ProfilesPhotos profile={handlePhoto} />
 
 					<TextInput
 						selectionColor={"rgba(0,0,0,0.5)"}
@@ -87,13 +114,11 @@ export default function SignUp() {
 					</SafeAreaView>
 				</View>
 
-				<TouchableOpacity
-					style={styles.button}
-					onPress={() => navigation.navigate("signin")}
-				>
+				<TouchableOpacity style={styles.button} onPress={register}>
 					<Text style={styles.buttonText}>Concluir</Text>
 				</TouchableOpacity>
 			</View>
+
 			<StatusBar style="auto" />
 		</ScrollView>
 	);
@@ -133,6 +158,15 @@ const styles = StyleSheet.create({
 		alignItems: "center",
 		justifyContent: "center",
 		backgroundColor: "#000101",
+	},
+	buttonDisabled: {
+		backgroundColor: "#363535",
+		borderRadius: 10,
+		height: 50,
+		width: 175,
+		marginBottom: 100,
+		alignItems: "center",
+		justifyContent: "center",
 	},
 	buttonText: {
 		fontSize: 23,

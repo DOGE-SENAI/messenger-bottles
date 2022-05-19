@@ -11,11 +11,16 @@ import {
 import { View, Text } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { StatusBar } from "expo-status-bar";
+import api from "../../service/api";
 
 export default function SignIn() {
 	const navigation = useNavigation();
 	const [username, setUsername] = useState("");
 	const [password, setPassword] = useState("");
+
+	const login = () => {
+		navigation.navigate("chat", { paramKey: username });
+	};
 
 	return (
 		<ScrollView style={styles.scrollContainer}>
@@ -53,10 +58,7 @@ export default function SignIn() {
 					</SafeAreaView>
 				</View>
 
-				<TouchableOpacity
-					style={styles.button}
-					onPress={() => navigation.navigate("chat", { paramKey: username })}
-				>
+				<TouchableOpacity style={styles.button} onPress={login}>
 					<Text style={styles.buttonTitle}>Entrar</Text>
 				</TouchableOpacity>
 			</View>
