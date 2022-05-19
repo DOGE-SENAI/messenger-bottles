@@ -1,4 +1,5 @@
 const { User } = require('../models')
+const bcrypt = require("bcrypt");
 
 module.exports = {
 
@@ -52,7 +53,27 @@ module.exports = {
         } catch (error) {
             res.status(400).json({error})
         }
-    }
+    },
+
+    async loginUser (req, res) {
+        try {
+            const { username, password } = req.body;
+            const users = await User.findOne({ where: { username: username, password: password } })
+            console.log(password)
+
+
+            if ((password !== users.password) || (username !== users.username)) {
+                res.json({ error: "Senha ou Username errados"})
+                return;
+            } else {
+                res.json({message: 'Senha e Username corretos'})
+                return
+            }
+
+        } catch (error) {
+            res.status(400).json({error})
+        }
+    },
 }
 
 

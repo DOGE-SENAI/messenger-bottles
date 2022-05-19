@@ -8,6 +8,7 @@ const MessageController = require('./src/controllers/MessageController')
 router.post('/user-create', UserController.createUser)
 router.put('/user-update/:id', UserController.updateUser)
 router.get('/user-list', UserController.listUser)
+router.post('/login', UserController.loginUser)
 
 router.post('/add-message', MessageController.addMessage)
 router.get('/list-message', MessageController.listMessage )
