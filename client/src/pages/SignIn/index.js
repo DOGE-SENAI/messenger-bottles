@@ -19,7 +19,17 @@ export default function SignIn() {
 	const [password, setPassword] = useState("");
 
 	const login = () => {
-		navigation.navigate("chat", { paramKey: username });
+		api
+			.post("/login", {
+				username,
+				password,
+			})
+			.then(({ data }) => {
+				if (data.logged) {
+					navigation.navigate('chat', {paramKey: username});
+				}
+			});
+		
 	};
 
 	return (
