@@ -26,10 +26,11 @@ export default function SignIn() {
 			})
 			.then(({ data }) => {
 				if (data.logged) {
-					navigation.navigate('chat', {paramKey: username});
+					navigation.navigate("chat", { paramKey: username });
+				} else {
+					console.log("Senha ou Usuário incorretos");
 				}
 			});
-		
 	};
 
 	return (
