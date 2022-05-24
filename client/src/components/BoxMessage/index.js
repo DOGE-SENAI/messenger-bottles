@@ -1,11 +1,32 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import { Avatar, IconButton } from "react-native-paper";
+import api from "../../service/api";
+import DefaultAvatar from "../../assets/images/DefaultAvatar.png";
 
 const Man2 = "https://imgur.com/qOemCDS.png";
 
 export default function BoxMessages({ from, sender, message, idMessage }) {
 	const [butttonDelete, setButttonDelete] = useState("none");
+
+	const [profilePhoto, setProfilePhoto] = useState("");
+
+	useEffect(() => {
+		api.get("/user-list").then(({ data: { users } }) => {
+			for (let i = 0; i < users.length; i++) {
+				if (users[i].username === from) {
+					setProfilePhoto(users[i].img);
+				}
+			}
+		});
+	}, []);
+
+	const deleteMessage = () => {
+		console.log(idMessage);
+		api.delete("delete-message", {
+			id: idMessage,
+		});
+	};
 
 	return (
 		<>
@@ -16,7 +37,7 @@ export default function BoxMessages({ from, sender, message, idMessage }) {
 							<Avatar.Image
 								size={50}
 								style={styles.avatar}
-								source={{ uri: Man2 }}
+								source={profilePhoto ? { uri: profilePhoto } : DefaultAvatar}
 							/>
 						)}
 
@@ -26,7 +47,7 @@ export default function BoxMessages({ from, sender, message, idMessage }) {
 							<Avatar.Image
 								size={50}
 								style={styles.avatar}
-								source={{ uri: Man2 }}
+								source={profilePhoto ? { uri: profilePhoto } : DefaultAvatar}
 							/>
 						)}
 					</View>
@@ -53,8 +74,8 @@ export default function BoxMessages({ from, sender, message, idMessage }) {
 					color="#CF3C3C"
 					style={[styles.btnDelete, { display: butttonDelete }]}
 					onPress={() => {
-						console.log(idMessage);
 						setButttonDelete("none");
+						deleteMessage();
 					}}
 				/>
 			</View>

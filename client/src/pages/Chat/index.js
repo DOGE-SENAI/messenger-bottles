@@ -15,50 +15,39 @@ import BoxMessages from "../../components/BoxMessage";
 import api from "../../service/api";
 
 const Chat = ({ route }) => {
+	// const listenMessages = (addMessage) => {
+	// 	return api
+	// 		.get("/list-message")
+	// 		.then(({ data: { messages } }) =>
+	// 			addMessage(messages[messages.length - 1])
+	// 		);
+	// };
+
 	const scrollViewRef = useRef();
 	const [isOpenEmojis, setIsOpenEmojis] = useState(false);
-	const chatUser = route.params.paramKey;
 
-	// const fakeData = [
-	//   {
-	//     id: 1,
-	//     create_at: "12/12/2012",
-	//     from: chatUser,
-	//     message: "Hello there!",
-	//   },
-	//   {
-	//     id: 2,
-	//     create_at: "14/12/2012",
-	//     from: "Steve",
-	//     message: "Hello! How are you?",
-	//   },
-	//   {
-	//     id: 3,
-	//     create_at: "12/12/2022",
-	//     from: "Yun Li",
-	//     message: "?????",
-	//   },
-	//   {
-	//     id: 4,
-	//     create_at: "12/12/2012",
-	//     from: chatUser,
-	//     message: "I'm good. And you?",
-	//   },
-	//   {
-	//     id: 5,
-	//     create_at: "12/12/2012",
-	//     from: "Steve",
-	//     message: "yep",
-	//   },
-	// ];
+	const chatUser = route.params.paramKey;
+	const [idCurrentUser, setIdCurrentUser] = useState(() => {
+		api.get("/user-list").then(({ data: { users } }) => {
+			for (let i = 0; i < users.length; i++) {
+				if (users[i].username === chatUser) {
+					return users[i].id;
+				}
+			}
+		});
+	});
 
 	const [message, setMessage] = useState("");
 	const [messageList, setMessageList] = useState([]);
-	// const [countId, setCountId] = useState(fakeData.length + 1);
 
 	useEffect(() => {
 		api.get("/list-message").then(({ data }) => setMessageList(data.messages));
-		console.log(messageList);
+
+		// listenMessages((newMessage) => {
+		// 	setMessageList((value) => {
+		// 		return [newMessage, ...value];
+		// 	});
+		// });
 	}, []);
 
 	const handleEmoji = (emoji) => {
@@ -66,13 +55,23 @@ const Chat = ({ route }) => {
 	};
 
 	const sendMessage = () => {
-		// setCountId((oldCount) => oldCount + 1);
-		// messageList.push({
-		//   id: countId,
-		//   create_at: "12/12/2012",
-		//   from: chatUser,
-		//   message: message,
-		// });
+		const date = new Date().toISOString();
+
+		api.get("/user-list").then(({ data: { users } }) => {
+			for (let i = 0; i < users.length; i++) {
+				if (users[i].username === chatUser) {
+					setIdCurrentUser(users[i].id);
+				}
+			}
+		});
+
+		api.post("/add-message", {
+			text: message,
+			time: date,
+			username: chatUser,
+			user_id: idCurrentUser,
+		});
+
 		setMessage("");
 	};
 
@@ -93,7 +92,7 @@ const Chat = ({ route }) => {
 				contentContainerStyle={styles.containerMessages}
 				showsVerticalScrollIndicator={false}
 			>
-				{messageList.map(({ id, user_id: from, text }) => {
+				{messageList.map(({ id, username: from, text }) => {
 					return (
 						<BoxMessages
 							key={id}
